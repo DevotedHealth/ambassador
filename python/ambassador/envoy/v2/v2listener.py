@@ -1008,6 +1008,9 @@ class V2Listener(dict):
                 ]
             }
 
+            if 'graphql' in vhost._hostname:
+                http_config["route_config"]["virtual_hosts"][0]["domains"].append(vhost._hostname + ":443")
+
             filter_chain["filters"] = [
                 {
                     "name": "envoy.http_connection_manager",
